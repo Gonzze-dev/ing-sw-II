@@ -6,13 +6,12 @@ from AbstractProductTeclado import AbstractProductTeclado
 
 class AbstractFactory(ABC):
     @abstractmethod
-    def create_product_a(self) -> AbstractProductMonitor:
+    def crear_producto_a(self) -> AbstractProductMonitor:
         pass
 
     @abstractmethod
-    def create_product_b(self) -> AbstractProductMouse:
+    def crear_producto_b(self) -> AbstractProductMouse:
         pass
 
-    @abstractmethod
-    def create_product_c(self) -> AbstractProductTeclado:
+    def crear_producto_c(self) -> AbstractProductMouse:
         pass
