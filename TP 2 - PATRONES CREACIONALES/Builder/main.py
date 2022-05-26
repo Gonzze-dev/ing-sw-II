@@ -1,7 +1,6 @@
 from Director import Director
 from ConcreteFacturaBuilder import ConcreteFacturaBuilder
 from IFacturaBuilder import IFacturaBuilder
-from FacturaElectronica import FacturaElectronica
 
 director = Director()
 facturaBuilder = ConcreteFacturaBuilder()
