@@ -14,7 +14,7 @@ class Decorator(Tarjeta):
         return self._tarjeta
 
     def getimpuesto(self) -> Double:
-        return self._tarjeta.getimpuesto()
+        return self._tarjeta.getimpuesto(self)
 
     def puedePagarEnCuotas(self) -> boolean:
         return self._tarjeta.puedePagarEnCuotas()

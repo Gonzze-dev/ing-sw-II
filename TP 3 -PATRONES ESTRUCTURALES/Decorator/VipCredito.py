@@ -8,4 +8,4 @@ class VipCredito(Decorator):
         super().__init__(tarjeta)
         
     def ingresarDinero(self, monto: Double) -> Double:
-        return self._tarjeta.ingresarDinero(monto) + self.getimpuesto()
+        return self._tarjeta.ingresarDinero(self, monto) + self.getimpuesto()
