@@ -8,7 +8,7 @@ def client_code(facade: FacadeVideoConvert):
 
     print(video[1])
 
-facade = FacadeVideoConvert
+facade = FacadeVideoConvert()
 client_code(facade)
 
 
