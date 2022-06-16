@@ -1,6 +1,5 @@
 
 from Integrante import Integrante
-from Mazo import Mazo
 
 
 class Crupier(Integrante):

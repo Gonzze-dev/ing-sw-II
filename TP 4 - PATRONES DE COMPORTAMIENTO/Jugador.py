@@ -7,3 +7,4 @@ class Jugador(Integrante):
     
     def sacarCarta(self,  mazo, crupier = None):
         return crupier.sacarCarta(mazo, crupier)
+    

@@ -1,9 +1,11 @@
 from random import shuffle
 from Carta import Carta
 from Crupier import Crupier
+from Iniciado import Iniciado
 from Mazo import Mazo
 from Integrante import Integrante
 from Jugador import Jugador
+from State import Context
 
 def testJugador():
     c1 = Carta(11, 'A')
@@ -14,10 +16,11 @@ def testJugador():
     jugador.addCarta(c1)
     jugador.addCarta(c2)
     jugador.addCarta(c3)
+    jugador.addCarta(c1)
+    jugador.addCarta(c3)
+    jugador.sumarPuntos()
 
-    jugador.__sumarPuntos__()
-
-    print(jugador)
+    print(jugador.showInfo())
 
 def testJugador2():
     mazo = Mazo()
@@ -25,26 +28,43 @@ def testJugador2():
     j1 = Jugador('Gonzalo')
 
     j1.templateAlgoritmo("1", crupier, mazo)
-    print(j1.getCartas())
+    j1.sumarPuntos()
+    print(j1.showInfo())
 
 def testIterator():
     mazo =  Mazo()
-    mazo.mezclar()
     cMazo = mazo.__iter__()
+    
     print("len mazo: ", cMazo.len(), "\n")
 
-    while(cMazo.len() >= 0):
+    while(cMazo.len() > 0):
         print(cMazo.__next__())
 
     print("len mazo: ", cMazo.len(), "\n")
 
+def testState():
+    puntajeMaximo = 21
+    jugadores = [Jugador('Gonzalo'), Jugador('Mauro'), Jugador('Juan')]
+    mazo = Mazo()
+    mazo.mezclar()
+    cMazo = mazo.__iter__()
 
-print("test 1")
-testJugador()
+    crupier = Crupier('Angela')
 
-print("\ntest 2")
-testJugador2()
+    contexto = Context(Iniciado())
+    contexto.request1(jugadores, crupier, cMazo, puntajeMaximo)
+    contexto.request2(jugadores, crupier, cMazo, puntajeMaximo)
 
-print("\ntest 3")
-testIterator()
+
+# print("test 1")
+# testJugador()
+
+# print("\ntest 2")
+# testJugador2()
+
+# print("\ntest 3")
+# testIterator()
+
+testState()
+
 
