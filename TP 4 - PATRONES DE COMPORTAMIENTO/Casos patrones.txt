@@ -1,0 +1,9 @@
+1. Recorrer una lista de invitados a una fiesta. ITERATOR porque nos permite recorrer una lista
+2. Permitir múltiples visores (viewers) para un único stream
+de una aplicación multimedia. OBSERVER porque nos permite notificar a multiples objetos
+3. Implementar un objeto “vault”. MEMENTO porque nos permite guardar objetos independientemente de us aplicacion
+4. Definir la gestión de colas de mensajes en un sistema
+operativo de tiempo real. CHAIN OF COMAND, permite hacerlo en tiempo de ejecucion, los eventos deciden si consumen (si es que tienen autoridad) el mensaje o no
+5. Desplegar un mecanismo de servicio de colas basado en
+objetos “agente” que concurren a un pool a buscar trabajo. MEDIATOR se recive la peticion de trabajo de quien la genere 
+el pool (es el mediador), y todos los que esten conectados a el por algun mecanismo uno de ellos recibe el requerimiento y los otros no  
