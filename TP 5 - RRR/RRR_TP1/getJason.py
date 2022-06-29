@@ -16,23 +16,27 @@ def printToken(sToken, dic):
         print "el token " + tk + " no existe"
 
 if len(arg) == 1:
+
     try:
         pathEjecutable = os.getcwd()
         jsonfile = pathEjecutable + jsonName
 
         with open(jsonfile, 'r') as (myfile):
             data = myfile.read()
-    except FileNotFoundError:
+    except:
         print "Ups, hubo un error al intentar abrir el archivo sitedata.json"
 
     try:
         obj = json.loads(data)
     except:
         print "Error, no se pudieron cargar los datos " + jsonName + "\sitedata.json"
-
+    
     tk = raw_input("Ingrese el token: ")
 
-    printToken(tk, obj)
+    try:
+        printToken(tk, obj)
+    except:
+        print "ups, hubo un error al intentar mostrar el token"
 
 elif arg[1] in ["-h", "--help"]:
     print "Ejemplo de uso"
