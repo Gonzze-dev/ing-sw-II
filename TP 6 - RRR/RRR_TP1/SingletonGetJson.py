@@ -3,27 +3,25 @@ import json
 
 class SingletonGetJson(metaclass=SingletonMeta):
 
-    fileName = "sitedata"
     jsonFile = ".\sitedata.json"
     data = None
     obj = None
 
     def getJasonToken(self):
-        try:
+        if self.obj is None:
+            try:
+                with open(self.jsonFile, 'r') as (myfile):
+                    self.data = myfile.read()
+            except:
+                print ("Ups, hubo un error al intentar abrir el archivo sitedata.json")
 
-            with open(self.jsonFile, 'r') as (myfile):
-                self.data = myfile.read()
-        except:
-            print ("Ups, hubo un error al intentar abrir el archivo sitedata.json")
+            try:
+                self.obj = json.loads(self.data)
+            except:
+                print ("Error, no se pudieron cargar los datos " + self.jsonFile + "\sitedata.json")
 
-        try:
-            self.obj = json.loads(self.data)
-        except:
-            print ("Error, no se pudieron cargar los datos " + cls.jsonFile + "\sitedata.json")
-
+        return self.obj
 
     def getToken(self, tk):
-        if self.obj is None:
-            self.getJasonToken()
-
-        return self.obj[tk]
+        
+        return self.getJasonToken()[tk]
