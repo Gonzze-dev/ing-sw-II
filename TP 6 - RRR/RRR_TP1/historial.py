@@ -1,4 +1,5 @@
 from __future__ import annotations
+from ast import Lambda
 from collections.abc import Iterable, Iterator
 
 class HistorialIterator(Iterator):
@@ -22,6 +23,9 @@ class HistorialIterator(Iterator):
     def len(self):
         return len(self._collection)
     
+    def ordenarMemorMayor(self):
+        self._collection.sort(key=lambda c: c['fecha'])
+    
 class Historial(Iterable):
     def __init__(self) -> None:
         self._historial = []
@@ -30,6 +34,7 @@ class Historial(Iterable):
         self._historial.append(historia)
 
     def mostrarHistorial(self, historialIterable):
+        historialIterable.ordenarMemorMayor()
         while(historialIterable._position < historialIterable.len()):
             print(historialIterable.__next__())
 
