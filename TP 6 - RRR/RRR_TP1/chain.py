@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-
+from datetime import datetime
 from SingletonGetJson import SingletonGetJson
+from historial import Historial
 
 
 class Handler(ABC):
@@ -34,38 +35,28 @@ class Token1Handler(AbstractHandler):
     saldo = 1000
     
     def handle(self, request):
-        if request["tk"] == self.s.getToken("token1"):
-            return ("entro")
+        if (request["tk"] == self.s.getToken("token1")
+            and request["monto"] <= self.saldo):
+
+            self.saldo -= request["monto"]
+            return {"nroPedido": request["nroPedido"],
+                    "fecha": datetime.today().strftime('%Y-%m-%d %H:%M'),
+                    "cuenta": "cuenta1",
+                    "monto": request["monto"]}
         else:
             return super().handle(request)
 
+class Token2Handler(AbstractHandler):
+    saldo = 2000
+    
+    def handle(self, request):
+        if (request["tk"] == self.s.getToken("token2")
+            and request["monto"] <= self.saldo):
 
-
-
-def client_code(handler):
-
-    for food in ["Nut", "Banana", "Cup of coffee"]:
-        print("\nClient: Who wants a " + food + "?")
-        result = handler.handle(food)
-        if result:
-            print(result)
+            self.saldo -= request["monto"]
+            return {"nroPedido": request["nroPedido"],
+                    "fecha": datetime.today().strftime('%Y-%m-%d %H:%M'),
+                    "cuenta": "cuenta2",
+                    "monto": request["monto"]}
         else:
-            print(food + " was left untouched.")
-
-
-if __name__ == "__main__":
-    monkey = MonkeyHandler()
-    squirrel = SquirrelHandler()
-    dog = DogHandler()
-
-    monkey.set_next(squirrel).set_next(dog)
-
-    # The client should be able to send a request to any handler, not just the
-    # first one in the chain.
-    print("Chain: Monkey > Squirrel > Dog\n")
-    client_code(monkey)
-    print("\n")
-
-    # print("Subchain: Squirrel > Dog\n")
-    # client_code(squirrel)
-    # print("\n")
+            return super().handle(request)

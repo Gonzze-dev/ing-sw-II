@@ -3,6 +3,7 @@ import sys
 from SingletonGetJson import SingletonGetJson
 
 version = "{0.1}"
+fileName = "sitedata"
 arg = sys.argv
 
 if len(arg) == 1:
@@ -28,7 +29,7 @@ elif arg[1] in ["-h", "--help"]:
 
     print ("")
     print ("Si al cargar los datos del json, estan en un formato que no corresponda, o de cualquier otro error respecto a esto se mostrara el siguiente mensaje")
-    print ("Error, no se pudieron cargar los datos de " + jsonName)
+    print ("Error, no se pudieron cargar los datos de " + fileName)
 
     print ("")
     print ("printToken recibe los siguiente argumentos printToken(token, json)")
