@@ -1,5 +1,3 @@
-#define ledPin 12
-
 float multiplicador = 1.00f;
 int tiempo = 0;
 
